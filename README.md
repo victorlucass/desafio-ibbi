@@ -1,106 +1,138 @@
 
-# FullStack -Sistema de Estoque / Compra de produtos. 
-## Controle de estoque de produtos
+### Descrição Informativa do Projeto: Controle de Vendas para E-commerce
 
+#### Visão Geral
+A aplicação desenvolvida serve como um controle de vendas para um e-commerce, permitindo a gestão eficiente de categorias e produtos, além de fornecer um ambiente de vendas e monitoramento de estoque e histórico de vendas. A seguir, detalharemos as funcionalidades principais da aplicação.
 
-> Aplicação funciona como um controle de vendas para um e-commerce.
-Na aplicação é possível:
+#### Funcionalidades
 
- - Cadastrar categoria:
- - Informar descrição da categoria.
- - Cadastrar produtos.
- -  Informar descrição do produto.
- - Informar valor do produto em real.
- - Informar categoria do produto.
- -  Informar quantidade em estoque.
+1. **Cadastro de Categoria**
+   - Permite ao usuário informar a descrição da categoria que deseja cadastrar.
 
-1. Telas
-1.1 Tela de Login
-O sistema permite que o usuário faça login na aplicação inserindo suas credenciais.
-Há também uma tela para cadastro de usuário.
-1.2 Tela Principal
-Tela principal onde mostra uma lista contendo todos os
-produtos cadastrados pelo usuário em forma de card. Cada card, apresenta a descrição,
-imagem do produto, quantidade disponível em estoque, o valor do produto, tanto em real
-quanto em dólar (Utilizei uma API pública para buscar a cotação do dólar e converter o valor
-corretamente), um botão para o usuário comprar o produto e o status do produto. O status
-do produto tem a seguinte representação em cores:
-● Vermelho - Se a quantidade disponível em estoque for menor que o sugerido;
-● Amarelo - Se a diferença entre a quantidade disponível e o valor sugerido for <=5;
-● Verde - Caso contrário.
-A tela ainda possui:
-● Um filtro por categoria. Sendo possível filtrar por mais de 1 categoria;
-● Um input para buscar produtos por descrição;
-● Caso o usuário deseje comprar um determinado produto, o usuário deve selecionar a
-quantidade que deseja antes de realizar a compra.
-● Caso o usuário compre todas as unidades em estoque, o produto não aparece na lista.
+2. **Cadastro de Produtos**
+   - **Descrição do Produto**: O usuário pode fornecer uma descrição detalhada do produto.
+   - **Valor do Produto**: O valor é informado em reais.
+   - **Categoria do Produto**: O usuário associa o produto a uma categoria previamente cadastrada.
+   - **Quantidade em Estoque**: É possível informar a quantidade disponível em estoque.
 
-1.3 Dashboard
-Dashboard para controle da quantidade de produtos em estoque e histórico de vendas.
+3. **Telas da Aplicação**
+   
+   **1.1 Tela de Login**
+   - O sistema permite que o usuário faça login inserindo suas credenciais.
+   - Possui uma tela para cadastro de novos usuários.
 
-Informações sobre cada card do Dashboard:
+   **1.2 Tela Principal**
+   - Apresenta uma lista de produtos cadastrados pelo usuário em forma de card.
+   - Cada card exibe a descrição, imagem do produto, quantidade disponível em estoque, valor em real e dólar, botão de compra e status do produto.
+     - **Status do Produto**:
+       - **Vermelho**: Quantidade disponível menor que a sugerida.
+       - **Amarelo**: Diferença entre quantidade disponível e a sugerida é menor ou igual a 5.
+       - **Verde**: Situação normal.
+   - **Funcionalidades da Tela Principal**:
+     - Filtro por categoria, com possibilidade de múltiplas seleções.
+     - Input para buscar produtos por descrição.
+     - Seleção de quantidade desejada antes de realizar a compra.
+     - Produtos esgotados não aparecem na lista.
 
-1. Histórico de vendas - Neste card deve é mostrado as 4 últimas vendas no site,
-mostrando informação de data e hora, nome do usuário que cadastrou o produto no
-site e a quantidade vendida do produto. Cada linha neste card é uma única venda,
-então se um determinado usuário vendeu o mesmo produto mais de uma vez, ele
-pode aparecer em mais de uma linha no card.
-2. Venda por categoria - Este card contém um gráfico de donut possuindo 4
-informações: as 3 categorias mais vendidas e “outros” (que seria o somatório de
-vendas de todas as outras categorias).
-3. Venda por produto - Este card contém um ranking dos 10 produtos mais
-vendidos.
+   **1.3 Dashboard**
+   - Fornece controle sobre a quantidade de produtos em estoque e histórico de vendas.
 
-# Orientações
+     **Cards do Dashboard**:
+     - **Histórico de Vendas**:
+       - Mostra as 4 últimas vendas, com informações de data e hora, nome do usuário que cadastrou o produto e quantidade vendida.
+       - Cada linha representa uma venda única, permitindo múltiplas entradas do mesmo produto.
+     - **Venda por Categoria**:
+       - Gráfico de donut apresentando as 3 categorias mais vendidas e a categoria "Outros" (soma das demais vendas).
+     - **Venda por Produto**:
+       - Ranking dos 10 produtos mais vendidos.
 
-<details>
-  <summary><strong>🐳 Rodando no Docker</strong></summary>
+#### Considerações Técnicas
+- Utilização de uma API pública para conversão do valor dos produtos de reais para dólares.
+- Sistema de cores intuitivo para status de estoque, facilitando a visualização e gestão por parte do usuário.
+- Filtros e buscas otimizados para facilitar a localização de produtos específicos.
+- Histórico detalhado de vendas para monitoramento e análise de desempenho.
 
-  ### 👉 Com Docker
+Esta aplicação se destaca pela interface intuitiva, funcionalidades abrangentes de gerenciamento e uma visão clara e detalhada das operações de vendas e estoque, tornando-se uma ferramenta valiosa para qualquer e-commerce.
 
-**:warning: Antes de começar, seu docker-compose precisa estar na versão v2.5 ou superior. [Veja aqui](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04-pt) ou [na documentação](https://docs.docker.com/compose/install/) como instalá-lo. No primeiro artigo, você pode substituir onde está com `1.26.0` por `2.5.0`.**
+# Aplicação de Controle de Vendas para E-commerce
 
-> :information_source: Rode os serviços `mysql_service` e `back_service` e `front_service`  com o comando `docker-compose up -d` na raiz do projeto.
+Esta aplicação serve como um sistema de controle de vendas para uma plataforma de e-commerce, permitindo a gestão eficiente de categorias e produtos, além de fornecer um ambiente de vendas e monitoramento de estoque e histórico de vendas.
 
-- Lembre-se de parar o `mysql` se estiver usando localmente na porta padrão (`3306`);
-- Esses serviços irão inicializar um container chamado `estoque_db`, `estoque_back`  e outro chamado `estoque_front`;
- Lembre-se de liberar a porta padrão (`4200`) do Angular para o frontend;
+## Funcionalidades
 
- - A partir daqui você pode abrir: `http://localhost:8000/docs` a documentação da API no Swagger UI.
- - Acessar `http://localhost:4200/login` para ir para o frontend da aplicação.
+- **Gestão de Categorias**
+  - Cadastro de categorias com descrições.
 
- O banco já vem populado com alguns usuários, categorias, produtos e vendas.
+- **Gestão de Produtos**
+  - Cadastro de produtos com descrições, preços em BRL, categorias e quantidades em estoque.
 
- Abaixo os usuários para se testar login:
- 
- ```
- [
-	{
-		"id" : 1,
-		"usuario" : "admin",
-		"senha" : "admin"
-	},
-	{
-		"id" : 2,
-		"usuario" : "user",
-		"senha" : "user"
-	},
-	{
-		"id" : 3,
-		"usuario" : "oppenheimer",
-		"senha" : "oppenheimer"
-	},
-	{
-		"id" : 4,
-		"usuario" : "barbie",
-		"senha" : "barbie"
-	},
-	{
-		"id" : 5,
-		"usuario" : "oppenbarbie",
-		"senha" : "oppenbarbie"
-	}
-]
- ``` 
+- **Autenticação de Usuário**
+  - Login e registro de usuários.
 
+- **Listagem de Produtos**
+  - Exibição de produtos em formato de card com detalhes como descrição, imagem, quantidade em estoque, preços em BRL e USD, botão de compra e indicador de status.
 
+- **Dashboard**
+  - Monitoramento de quantidades em estoque e histórico de vendas com diversas métricas e visualizações.
+
+## Instruções de Configuração
+
+### Pré-requisitos
+
+Certifique-se de ter o Docker e o Docker Compose instalados na sua máquina.
+
+## Serviços
+
+- **mysql_service**
+  - Serviço de banco de dados MySQL.
+
+- **back_service**
+  - Serviço de backend.
+
+- **front_service**
+  - Serviço de frontend.
+
+### Estrutura de Diretórios
+
+Organize seus arquivos da seguinte maneira:
+
+```
+project-root/
+├── backend/
+│   ├── Dockerfile
+│   └── ... (outros arquivos de backend)
+├── frontend/
+│   ├── Dockerfile
+│   └── ... (outros arquivos de frontend)
+└── docker-compose.yml
+```
+
+### Passos para Subir os Serviços
+
+1. **Navegue até o diretório raiz do projeto (onde o arquivo `docker-compose.yml` está localizado).**
+
+2. **Construa e inicie os serviços (acima ⬆️):**
+
+   ```sh
+   docker-compose up --build <nome do serviço>
+   ```
+
+3. **Acesse os serviços:**
+   - Frontend: `http://localhost:4200/login`
+   - Backend: `http://localhost:8000/docs`
+
+4. **Para parar os serviços:**
+
+   ```sh
+   docker-compose down
+   ```
+
+5. **Para rodar os serviços em segundo plano:**
+
+   ```sh
+   docker-compose up -d
+   ```
+
+## Conclusão
+
+Essa configuração proporciona um ambiente robusto para desenvolvimento e testes da sua aplicação de controle de vendas para e-commerce utilizando Docker e Docker Compose. Aproveite para desenvolver e aprimorar sua aplicação!

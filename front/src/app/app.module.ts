@@ -28,7 +28,6 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { TieredMenuModule } from 'primeng/tieredmenu';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { TableModule } from 'primeng/table';
-import { UsuariosEditarComponent } from './usuarios-editar/usuarios-editar.component';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ListaProdutosComponent } from './lista-produtos/lista-produtos.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -54,6 +53,7 @@ import { ImageModule } from 'primeng/image';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,7 +67,6 @@ import { ImageModule } from 'primeng/image';
     CadastroProdutoComponent,
     DashboardComponent,
     UsuariosComponent,
-    UsuariosEditarComponent,
     ListaProdutosComponent,
     ProdutosEditarComponent,
     ListaVendasComponent,

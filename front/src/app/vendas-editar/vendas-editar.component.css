@@ -1,12 +1,17 @@
+.container-vendas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .card {
   padding: 20px;
   margin: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  max-width: 600px;
+  max-width: 100%;
+  min-width: 500px;
   font-family: epilogue;
-  text-align: center;
-  max-height: 750px;
 }
 
 form {

@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Message } from 'primeng/api';
 import { ActivatedRoute } from '@angular/router';
 import { VendasService, VendaPUT } from '../vendas.service';
 import { UsuariosService } from '../usuarios.service';
 import { ProdutosService } from '../produtos.service';
+import { DatePipe } from '@angular/common';
 UsuariosService;
 ProdutosService
 
@@ -21,9 +22,10 @@ interface Produto {
 @Component({
   selector: 'app-vendas-editar',
   templateUrl: './vendas-editar.component.html',
-  styleUrls: ['./vendas-editar.component.css']
+  styleUrls: ['./vendas-editar.component.css'],
+  providers: [DatePipe]
 })
-export class VendasEditarComponent implements OnInit {
+export class VendasEditarComponent implements OnInit, OnChanges {
   form: FormGroup = this.formBuilder.group({
     produto_id: ['', Validators.required],
     usuario_id: ['', Validators.required],
@@ -51,7 +53,8 @@ export class VendasEditarComponent implements OnInit {
     private route: ActivatedRoute,
     private vendasService: VendasService,
     private usuariosService: UsuariosService,
-    private produtosService: ProdutosService
+    private produtosService: ProdutosService,
+    private datePipe: DatePipe
     ) {}
 
   ngOnInit() {
@@ -62,6 +65,8 @@ export class VendasEditarComponent implements OnInit {
       )
       this.carregarUsuarios();
       this.carregarProdutos();
+
+      this.carregarForm();
       this.message1 = [
         {
           severity: 'error',
@@ -86,7 +91,38 @@ export class VendasEditarComponent implements OnInit {
         }
       )
       console.log(this.usuarios);
+    }
 
+    carregarForm() {
+     if(this.id) {
+      this.vendasService.getVendasById(this.id).subscribe(
+        (response: any) => {
+          this.carregarProdutosById(response.produto_id);
+          this.carregarUsuariosById(response.usuario_id);
+
+          this.form.patchValue({
+            quantidade: response.quantidade,
+            data_venda: this.datePipe.transform(response.data_venda, 'yyyy-MM-dd')
+          })
+        }
+      )
+     }
+    }
+
+    carregarProdutosById(id: number) {
+      this.produtosService.getProdutosById(id).subscribe(
+        (response: any) => {
+          this.produtoSelected = response;
+        }
+      )
+    }
+
+    carregarUsuariosById(id: number) {
+      this.usuariosService.getUserById(id).subscribe(
+        (response: any) => {
+          this.usuarioSelected = response;
+        }
+      )
     }
 
     carregarProdutos() {
@@ -122,9 +158,14 @@ export class VendasEditarComponent implements OnInit {
 
   }
   verificarCampos() {
-    this.cadastrarDesabilitado = !(this.form.value.descricao && this.form.value.valor && this.form.value.quantidade && this.form.value.categoria_id);
+    this.cadastrarDesabilitado = !(this.form.value.quantidade && this.form.value.data_venda);
     this.isRegisterFailed = false;
     this.isRegisterSuccess = false;
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(changes);
+    this.verificarCampos();
   }
 
 }

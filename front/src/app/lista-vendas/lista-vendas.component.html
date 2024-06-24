@@ -12,6 +12,9 @@
         <td>{{ rowData.usuario }}</td>
         <td>{{ rowData.quantidade }} </td>
         <td>{{ rowData.data_venda | date: 'dd/MM/yyyy' }}</td>
+        <td>
+          <button pButton icon="pi pi-pencil" (click)="editarVenda(rowData.id)" class="p-button-info"></button>
+        </td>
       </tr>
     </ng-template>
   </p-table>

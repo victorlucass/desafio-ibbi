@@ -31,6 +31,10 @@ export class ProdutosService {
     return this.http.get<any>(this.apiUrl);
   }
 
+  getProdutosById(id: number): Observable<any> {
+    return this.http.get<any>(this.apiUrl + id);
+  }
+
   insertProduto(produto: ProductPOST): Observable<any> {
     return this.http.post<any>(this.apiUrl, produto);
   }

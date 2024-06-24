@@ -35,6 +35,10 @@ export class VendasService {
     return this.http.get<any>(this.apiUrl);
   }
 
+  getVendasById(id: number): Observable<any> {
+    return this.http.get<any>(this.apiUrl + id);
+  }
+
   deleteVenda(id: number): Observable<any> {
     return this.http.delete<any>(this.apiUrl + id);
   }

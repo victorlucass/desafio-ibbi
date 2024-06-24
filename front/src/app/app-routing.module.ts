@@ -10,7 +10,6 @@ import { CadastroCategoriaComponent } from './cadastro-categoria/cadastro-catego
 import { CadastroProdutoComponent } from './cadastro-produto/cadastro-produto.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
-import { UsuariosEditarComponent } from './usuarios-editar/usuarios-editar.component';
 import { ListaProdutosComponent } from './lista-produtos/lista-produtos.component';
 import { ProdutosEditarComponent } from './produtos-editar/produtos-editar.component';
 import { ListaVendasComponent } from './lista-vendas/lista-vendas.component';
@@ -22,13 +21,13 @@ const routes: Routes = [
     path: '',
     component: LayoutComponent,
     children: [
-      { path: 'cadastro', component: CadastroComponent },
+      { path: 'cadastro-usuario', component: CadastroComponent },
       { path: 'home', component: HomeComponent },
       { path: 'cadastro-categoria', component: CadastroCategoriaComponent },
       { path: 'cadastro-produto', component: CadastroProdutoComponent },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'usuarios', component: UsuariosComponent },
-      { path: 'usuarios-editar/:id', component: UsuariosEditarComponent }, // Definindo o parâmetro :id
+      { path: 'usuarios-editar/:id', component: CadastroComponent }, // Definindo o parâmetro :id
       { path: 'lista-produtos', component: ListaProdutosComponent },
       { path: 'produtos-editar/:id', component: ProdutosEditarComponent },
       { path: 'lista-vendas', component: ListaVendasComponent },

@@ -27,7 +27,7 @@ export class HeaderComponent implements OnInit{
             {
               label: 'Cadastrar Usuário',
               icon: 'pi pi-fw pi-plus',
-              routerLink: ['/cadastro']
+              routerLink: ['/cadastro-usuario']
             },
             {
               label: 'Listar Usuários',

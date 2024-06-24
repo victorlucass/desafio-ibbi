@@ -29,6 +29,7 @@ export class ListaVendasComponent implements OnInit {
       { field: 'usuario', header: 'Usuário' }, // Adjusted field name
       { field: 'quantidade', header: 'Quantidade' },
       { field: 'data_venda', header: 'Data da venda' },
+      { field: 'actions', header: 'Ações' },
     ];
   }
 

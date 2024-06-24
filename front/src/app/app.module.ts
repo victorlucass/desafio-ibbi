@@ -31,7 +31,6 @@ import { TableModule } from 'primeng/table';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ListaProdutosComponent } from './lista-produtos/lista-produtos.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ProdutosEditarComponent } from './produtos-editar/produtos-editar.component'; //
 import { CotacaoDolarService } from './cotacao-dolar.service';
 import { DataViewModule, DataViewLayoutOptions } from 'primeng/dataview';
 import { TagModule } from 'primeng/tag';
@@ -68,7 +67,6 @@ import { ImageModule } from 'primeng/image';
     DashboardComponent,
     UsuariosComponent,
     ListaProdutosComponent,
-    ProdutosEditarComponent,
     ListaVendasComponent,
     VendasEditarComponent,
     CardHistoricoVendasComponent,

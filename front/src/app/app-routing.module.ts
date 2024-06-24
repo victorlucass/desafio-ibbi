@@ -11,7 +11,6 @@ import { CadastroProdutoComponent } from './cadastro-produto/cadastro-produto.co
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { ListaProdutosComponent } from './lista-produtos/lista-produtos.component';
-import { ProdutosEditarComponent } from './produtos-editar/produtos-editar.component';
 import { ListaVendasComponent } from './lista-vendas/lista-vendas.component';
 import { VendasEditarComponent } from './vendas-editar/vendas-editar.component';
 
@@ -25,11 +24,11 @@ const routes: Routes = [
       { path: 'home', component: HomeComponent },
       { path: 'cadastro-categoria', component: CadastroCategoriaComponent },
       { path: 'cadastro-produto', component: CadastroProdutoComponent },
+      { path: 'produtos-editar/:id', component: CadastroProdutoComponent },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'usuarios', component: UsuariosComponent },
       { path: 'usuarios-editar/:id', component: CadastroComponent }, // Definindo o parâmetro :id
       { path: 'lista-produtos', component: ListaProdutosComponent },
-      { path: 'produtos-editar/:id', component: ProdutosEditarComponent },
       { path: 'lista-vendas', component: ListaVendasComponent },
       { path: 'vendas-editar/:id', component: VendasEditarComponent }
     ],

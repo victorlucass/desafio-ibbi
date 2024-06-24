@@ -5,16 +5,12 @@
       <span class="p-inputgroup-addon">
         <i class="pi pi-user"></i>
       </span>
-      <input pInputText type="text" class="p-inputtext-lg" placeholder="Nova categoria" [(ngModel)]="descricaoCategoria" />
+      <input pInputText type="text" class="p-inputtext-lg" placeholder="Nova categoria" [(ngModel)]="descricaoCategoria" (keyup)="validarCampos()" />
     </div>
 
 
-    <button type="button" pButton label="Cadastrar" class="p-button-primary" (click)="cadastrarCategoria()"></button>
-    <div *ngIf="isRegisterFailed">
-      <p-messages [value]="message1"></p-messages>
-    </div>
-    <div *ngIf="isRegisterSuccess">
-      <p-messages [value]="message2"></p-messages>
-    </div>
+    <button type="button" [disabled]="isDisabled" pButton label="Cadastrar" class="p-button-primary" (click)="cadastrarCategoria()"></button>
+    
+    <p-toast></p-toast>
   </div>
 </div>

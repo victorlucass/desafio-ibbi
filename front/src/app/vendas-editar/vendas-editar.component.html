@@ -3,7 +3,9 @@
     <h2>Editar Venda</h2>
     <form [formGroup]="form">
       <div class="card flex justify-content-center">
-        <p-dropdown [options]="usuarios" [(ngModel)]="usuarioSelected" optionLabel="usuario" [filter]="true" filterBy="usuario" [showClear]="true" placeholder="Selecione um usuário" [ngModelOptions]="{ standalone: true }">
+        <p-dropdown [options]="usuarios" [(ngModel)]="usuarioSelected" optionLabel="usuario" [filter]="true"
+          filterBy="usuario" placeholder="Selecione um usuário"
+          [ngModelOptions]="{ standalone: true }">
           <ng-template pTemplate="selectedItem">
             <div class="flex align-items-center gap-2" *ngIf="usuarioSelected">
               <div>{{ usuarioSelected.usuario }}</div>
@@ -17,7 +19,9 @@
         </p-dropdown>
       </div>
       <div class="card flex justify-content-center">
-        <p-dropdown [options]="produtos" [(ngModel)]="produtoSelected" optionLabel="usuario" [filter]="true" filterBy="usuario" [showClear]="true" placeholder="Selecione um produto" [ngModelOptions]="{ standalone: true }">
+        <p-dropdown [options]="produtos" [(ngModel)]="produtoSelected" optionLabel="usuario" [filter]="true"
+          filterBy="usuario" placeholder="Selecione um produto"
+          [ngModelOptions]="{ standalone: true }">
           <ng-template pTemplate="selectedItem">
             <div class="flex align-items-center gap-2" *ngIf="produtoSelected">
               <div>{{ produtoSelected.descricao }}</div>
@@ -38,14 +42,13 @@
         <label for="data_venda">Data da Venda</label>
         <input id="data_venda" type="date" pInputText formControlName="data_venda" required />
       </div>
-      <p-button [disabled]="cadastrarDesabilitado" (click)="editarVenda()" label="Cadastrar" icon="pi pi-save" class="p-button-success"></p-button>
+      <div class="w-full flex justify-content-center">
+        <p-button [disabled]="form.invalid || isDisable" (click)="editarVenda()" label="Editar Venda" icon="pi pi-save"
+          class="p-button-success"></p-button>
+      </div>
     </form>
-    <div *ngIf="isRegisterFailed">
-      <p-messages [value]="message1"></p-messages>
-    </div>
-    <div *ngIf="isRegisterSuccess">
-      <p-messages [value]="message2"></p-messages>
-    </div>
   </div>
-  
+
+  <p-toast></p-toast>
+
 </div>

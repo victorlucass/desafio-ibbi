@@ -1,0 +1,26 @@
+<!-- usuarios.component.html -->
+<div class="p-4">
+  <h2>Lista de Usuários</h2>
+
+  <p-table [value]="users" [paginator]="true" [rows]="10" [responsive]="true">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Id</th>
+        <th>Usuário</th>
+        <th>Ações</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user>
+      <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.usuario }}</td>
+        <td class="botoes">
+          <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-success"
+            (click)="navegaEditarUsuario(user.id)"></button>
+          <button pButton icon="pi pi-trash" class="p-button-rounded p-button-danger"
+            (click)="deletarUsuario(user.id)"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

@@ -1,0 +1,30 @@
+<div class="cadastro-container">
+  <h2>Cadastro de Usuário</h2>
+  <div class="cadastro-form">
+    <div class="p-inputgroup">
+      <span class="p-inputgroup-addon">
+        <i class="pi pi-user"></i>
+      </span>
+      <input type="text" pInputText placeholder="Username" [(ngModel)]="usuario" (keyup)="verificarCampos()">
+    </div>
+    <div class="p-inputgroup">
+      <span class="p-inputgroup-addon">
+        <i class="pi pi-lock"></i>
+      </span>
+      <input type="password" pInputText placeholder="Senha" [(ngModel)]="senha" (keyup)="verificarCampos()">
+    </div>
+    <div class="p-inputgroup">
+      <span class="p-inputgroup-addon">
+        <i class="pi pi-lock"></i>
+      </span>
+      <input type="password" pInputText placeholder="Confirmação sua Senha" [(ngModel)]="confirmacaoSenha" (keyup)="verificarCampos()">
+    </div>
+    <button type="button" pButton label="Cadastrar" class="p-button-primary" (click)="cadastrar()" [disabled]="cadastrarDesabilitado"></button>
+    <div *ngIf="isRegisterFailed">
+      <p-messages [value]="message1"></p-messages>
+    </div>
+    <div *ngIf="isRegisterSuccess">
+      <p-messages [value]="message2"></p-messages>
+    </div>
+  </div>
+</div>

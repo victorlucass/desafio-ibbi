@@ -1,0 +1,99 @@
+<div class="flex align-items-center p-3 w-full flex-wrap">
+  <div id="popup" class="card flex justify-content-right gap-2" *ngIf="showNotLoggedInMessage">
+    <p-toast></p-toast>
+    <p-confirmPopup></p-confirmPopup>
+    <p-button icon="pi pi-check" label="Você não está logado!" (click)="navigateToLogin()"></p-button>
+  </div>
+  <div class="search-container">
+    <div class="search">
+
+      <span class="p-input-icon-right">
+        <i class="pi pi-times clear-icon" (click)="limparFiltro()"></i>
+        <input pInputText [(ngModel)]="descricaoFiltro" placeholder="Pesquisar por descrição">
+      </span>
+      <button pButton type="button" label="Pesquisar" (click)="filtroDescricao()"></button>
+    </div>
+    <div class="p-multiSelect">
+      <p-multiSelect [options]="categorias" (onChange)="filtroCategoria()" [(ngModel)]="selectedCategory"
+        defaultLabel="Filtrar por categoria" optionLabel="descricao" display="chip"></p-multiSelect>
+    </div>
+  </div>
+</div>
+
+
+<p-dataView #dv [value]="produtosFiltrados" [rows]="5" [paginator]="true">
+  <ng-template let-product pTemplate="listItem">
+    <div class="col-12">
+      <div class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4">
+        <img class="w-3rem sm:w-8rem xl:w-10rem shadow-2 block xl:block mx-auto border-round" [src]="product.imagem"
+          [alt]="product.name" />
+        <div
+          class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
+          <div class="flex flex-column align-items-center sm:align-items-start gap-3">
+            <div class="text-2xl font-bold text-900">{{ product.descricao }}</div>
+            <div class="flex align-items-center gap-3">
+              <span class="flex align-items-center gap-2">
+                <i class="pi pi-tag"></i>
+                <span class="font-semibold">{{ product.descricaoCategoria }}</span>
+              </span>
+              <p-tag [value]="getStatus(product)" [severity]="getSeverity(product)" *ngIf="!product.isEsgotado"></p-tag>
+              <p-tag value="Esgotado" severity="danger" *ngIf="product.isEsgotado"></p-tag>
+              <p-tag value="Indisponível" severity="warning" *ngIf="product.isIndisponivel"></p-tag>
+              <p-tag value="Disponível" severity="success" *ngIf="product.isDisponivel"></p-tag>
+              <p-tag [value]="product.quantidade" severity="info"></p-tag>
+            </div>
+
+            <div class="flex align-items-center gap-3">
+              <span class="flex align-items-center gap-2">
+                <i class="pi pi-money-bill"></i>
+                <span class="font-semibold">{{ product.valor | currency: 'BRL' }}  </span>
+              </span>
+            </div>
+           
+            <div class="flex align-items-center gap-3">
+              <span class="flex align-items-center gap-2">
+                <i class="pi pi-money-bill"></i>
+                <span class="font-semibold">{{ getDolarValue(product.valor) | currency }}  </span>
+              </span>
+            </div>
+
+            <div class="quantidade-container">
+              <!-- <button pButton icon="pi pi-minus" class="p-button-rounded"
+                (click)="diminuirQuantidade(product)"></button> -->
+
+              <p-button icon="pi pi-minus" [rounded]="true" [text]="true"
+                (click)="diminuirQuantidade(product)"></p-button>
+
+
+              <!-- <input type="number" [(ngModel)]="product.quantidadeVenda" (change)="atualizarQuantidade(product)"
+                min="1"> -->
+
+              <input type="text" pInputText [(ngModel)]="product.quantidadeVenda"
+                (change)="atualizarQuantidade(product)" />
+
+
+
+              <!-- <button pButton icon="pi pi-plus" class="p-button-rounded" (click)="aumentarQuantidade(product)"></button> -->
+
+              <p-button icon="pi pi-plus" [rounded]="true" [text]="true"
+                (click)="aumentarQuantidade(product)"></p-button>
+            </div>
+          </div>
+
+          <div class="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
+            <button (click)="comprarProduto(product)" class="p-button-rounded" pButton icon="pi pi-shopping-cart"
+              class="md:align-self-end mb-2 p-button-rounded" [disabled]="product.quantidadeVenda === 0"></button>
+            <p-tag [value]="'Esgotado'" [severity]="'danger'" *ngIf="product.isEsgotado"></p-tag>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</p-dataView>
+
+
+<!--  
+
+<span class="text-2xl font-semibold">{{ 'R$' + product.valor }}</span>
+            <span class="text-2xl font-semibold">{{ 'US$' + getDolarValue(product.valor).toFixed(2) }}</span>
+-->

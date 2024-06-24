@@ -1,0 +1,17 @@
+.dashboard-container {
+ display: grid;
+ gap: 1rem;
+ grid-template-columns: repeat(6, 1fr);
+}
+
+.grid-item-vendas {
+ grid-column: span 4;
+}
+
+.grid-item-donut {
+ grid-column: span 2;
+}
+
+.grid-item-barras {
+ grid-column: span 6;
+}

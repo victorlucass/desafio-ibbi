@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  mysql_service:
+    platform: linux/x86_64
+    image: mysql:5.7
+    container_name: estoque_db
+    restart: on-failure
+    environment: 
+      MYSQL_DATABASE: estoque
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3307:3306"
+
+  back_service:
+    build: ./back
+    command: bash -c "cd ./alembic && alembic upgrade head && cd .. && uvicorn main:app --host 0.0.0.0"
+    container_name: estoque_back
+    restart: on-failure
+    depends_on:
+      - mysql_service
+    environment:
+      db_name: estoque
+      db_user: root
+      db_password: root
+      db_host: estoque_db
+      db_port: 3306
+    ports:
+      - "8000:8000"
+  
+  front_service:
+    build:
+      context: ./front
+    container_name: estoque_front
+    restart: on-failure
+    depends_on:
+      - back_service
+    ports:
+      - "4200:4200"

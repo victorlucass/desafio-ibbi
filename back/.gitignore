@@ -1,0 +1,52 @@
+# Arquivos de dependência do Python (gerados pelo pip, poetry, etc.)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pyz
+*.pyw
+*.egg-info/
+dist/
+build/
+*.egg
+pip-wheel-metadata/
+*.whl
+
+# Arquivos do Virtual Environment
+venv/
+env/
+ENV/
+
+# Arquivos específicos do Visual Studio Code (VSCode)
+.vscode/
+*.code-workspace
+*.vsix
+.history/
+
+# Arquivos de configuração do VSCode
+.settings/
+settings.json
+
+# Logs e caches do VSCode
+*.log
+*.code-snippets.cache
+*.cs.cache
+*.ipynb_checkpoints/
+
+# Arquivos de debug do VSCode
+*.launch
+*.json
+*.vscode-test/
+*.vscode-server/
+*.vscode-remote/
+.vs/
+
+# Outros arquivos de configuração do VSCode
+*.sublime-project
+*.sublime-workspace
+
+# Arquivo de ambiente virtual do Python
+pyvenv.cfg
+
+# Arquivos gerados pelo pytest
+*.pytest_cache/

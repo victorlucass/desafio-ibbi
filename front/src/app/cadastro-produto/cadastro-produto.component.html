@@ -1,0 +1,80 @@
+<div class="container-produto">
+  <div class="card">
+    <h3>Cadastrar Produto</h3>
+    <form [formGroup]="form">
+      <!-- <div class="p-field">
+        <label for="descricao">Descrição</label>
+        <input id="descricao" type="text" pInputText formControlName="descricao" required />
+      </div> -->
+
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon">
+          <i class="pi pi-shopping-cart"></i>
+        </span>
+        <input pInputText placeholder="Descrição" formControlName="descricao" (keyup)="verificarCampos()" />
+      </div>
+
+
+      <!-- <div class="p-field">
+        <label for="valor">Valor</label>
+        <input id="valor" type="number" pInputText formControlName="valor" required />
+      </div> -->
+
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon">
+          <i class="pi pi-dollar"></i>
+        </span>
+        <input pInputText placeholder="Valor" formControlName="valor"  (keyup)="verificarCampos()"/>
+      </div>
+
+
+      <!-- <div class="p-field">
+        <label for="quantidade">Quantidade</label>
+        <input id="quantidade" type="number" pInputText formControlName="quantidade" required />
+      </div> -->
+
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon">
+          <i class="pi pi-plus"></i>
+        </span>
+        <input pInputText placeholder="Quantidade" formControlName="quantidade" (keyup)="verificarCampos()" />
+      </div>
+
+
+      <div class="p-field">
+        <label for="categoria_id">Categoria</label>
+        <p-dropdown class="w-full" formControlName="categoria_id" [options]="categorias"
+          optionLabel="descricao" (keyup)="verificarCampos()"></p-dropdown>
+      </div>
+
+
+
+      <!-- <div class="p-field">
+        <label for="imagem">Imagem</label>
+        <input id="imagem" type="text" pInputText formControlName="imagem" required />
+      </div> -->
+
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon">
+          <i class="pi pi-image"></i>
+        </span>
+        <input pInputText placeholder="Imagem" formControlName="imagem" (keyup)="verificarCampos()"/>
+      </div>
+
+      <div *ngIf="form.get('imagem')?.value" class="w-full flex justify-content-center">
+        <p-image [src]="form.get('imagem')?.value" alt="Image" width="250"></p-image>
+
+      </div>
+
+      <p-button [disabled]="cadastrarDesabilitado" (click)="cadastrarProduto()" label="cadastrar" icon="pi pi-save"
+        class="p-button-success"></p-button>
+    </form>
+
+    <div *ngIf="isRegisterFailed">
+      <p-messages [value]="message1"></p-messages>
+    </div>
+    <div *ngIf="isRegisterSuccess">
+      <p-messages [value]="message2"></p-messages>
+    </div>
+  </div>
+</div>

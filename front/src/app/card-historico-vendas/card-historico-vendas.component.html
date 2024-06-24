@@ -1,0 +1,24 @@
+<div class="card flex justify-content-center">
+  <p-card header="Histórico de Vendas">
+    <p-table [value]="historico | keyvalue">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Data da Venda</th>
+          <th>Hora da Venda</th>
+          <th>Descrição</th>
+          <th>Usuário</th>
+          <th>Quantidade</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-venda>
+        <tr>
+          <td>{{ venda.value.data_venda | date: 'dd/MM/yyyy' }}</td>
+          <td>{{ venda.value.data_venda | date: 'HH:mm:ss' }}</td>
+          <td>{{ venda.value.descricao }}</td>
+          <td>{{ venda.value.usuario }}</td>
+          <td>{{ venda.value.quantidade }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-card>
+</div>

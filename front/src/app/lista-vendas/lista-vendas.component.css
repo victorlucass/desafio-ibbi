@@ -1,0 +1,9 @@
+.p-button-success {
+  background-color: #5cb85c !important;
+  color: #ffffff !important;
+}
+
+.p-button-danger {
+  background-color: #d9534f !important;
+  color: #ffffff !important;
+}

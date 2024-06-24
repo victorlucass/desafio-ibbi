@@ -1,0 +1,48 @@
+<div class="card">
+  <h3>Editar Venda</h3>
+  <form [formGroup]="form">
+    <div class="card flex justify-content-center">
+      <p-dropdown [options]="usuarios" [(ngModel)]="usuarioSelected" optionLabel="usuario" [filter]="true" filterBy="usuario" [showClear]="true" placeholder="Selecione um usuário" [ngModelOptions]="{ standalone: true }">
+        <ng-template pTemplate="selectedItem">
+          <div class="flex align-items-center gap-2" *ngIf="usuarioSelected">
+            <div>{{ usuarioSelected.usuario }}</div>
+          </div>
+        </ng-template>
+        <ng-template let-user pTemplate="item">
+          <div class="flex align-items-center gap-2">
+            <div>{{ user.usuario }}</div>
+          </div>
+        </ng-template>
+      </p-dropdown>
+    </div>
+    <div class="card flex justify-content-center">
+      <p-dropdown [options]="produtos" [(ngModel)]="produtoSelected" optionLabel="usuario" [filter]="true" filterBy="usuario" [showClear]="true" placeholder="Selecione um produto" [ngModelOptions]="{ standalone: true }">
+        <ng-template pTemplate="selectedItem">
+          <div class="flex align-items-center gap-2" *ngIf="produtoSelected">
+            <div>{{ produtoSelected.descricao }}</div>
+          </div>
+        </ng-template>
+        <ng-template let-product pTemplate="item">
+          <div class="flex align-items-center gap-2">
+            <div>{{ product.descricao }}</div>
+          </div>
+        </ng-template>
+      </p-dropdown>
+    </div>
+    <div class="card flex justify-content-center flex align-items-center gap-2">
+      <label for="quantidade">Quantidade</label>
+      <input id="quantidade" type="number" pInputText formControlName="quantidade" required />
+    </div>
+    <div class="card flex justify-content-center flex align-items-center gap-2">
+      <label for="data_venda">Data da Venda</label>
+      <input id="data_venda" type="date" pInputText formControlName="data_venda" required />
+    </div>
+    <p-button [disabled]="cadastrarDesabilitado" (click)="editarVenda()" label="Cadastrar" icon="pi pi-save" class="p-button-success"></p-button>
+  </form>
+  <div *ngIf="isRegisterFailed">
+    <p-messages [value]="message1"></p-messages>
+  </div>
+  <div *ngIf="isRegisterSuccess">
+    <p-messages [value]="message2"></p-messages>
+  </div>
+</div>
